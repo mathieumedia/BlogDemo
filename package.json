@@ -2,10 +2,12 @@
     "name": "blogdemo",
     "version": "1.0.0",
     "description": "A Simple Blogger site built with MERN Stack",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "start": "node server/server.js",
-        "server": "nodemon server/server.js"
+        "server": "nodemon server/server.js",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
     },
     "repository": {
         "type": "git",
