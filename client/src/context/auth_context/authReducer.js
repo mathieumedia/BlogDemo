@@ -26,6 +26,7 @@ export default (state, action) => {
                 token: null,
                 currentUser: null,
                 isAuthenticated: false,
+                toasts: null
             }
         case ActionTypes.REGISTER_SUCCESS:
         case ActionTypes.LOGIN_SUCCESS:

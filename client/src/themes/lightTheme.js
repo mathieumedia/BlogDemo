@@ -25,6 +25,7 @@ export default createTheme({
                     textTransform: 'none',
                 }
             }
-        }
+        },
+        
     }
 })

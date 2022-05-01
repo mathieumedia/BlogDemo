@@ -108,7 +108,7 @@ export default function Home() {
                         mt: 3, mb: 2
                     }}
                 >
-                    Register
+                    Login
                 </Button>
 
                 <Grid container justifyContent="flex-end">

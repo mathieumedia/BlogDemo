@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const PORT = process.env.PORT || 5000;
 const dotenv = require('dotenv').config();
 
-
 const app = express();
 
 app.use(express.json({extended: false}));
@@ -20,7 +19,6 @@ const connectDB = async () => {
 }
 
 connectDB();
-
 
 app.use ('/api/users', require('./routes/userRoutes'));
 app.use ('/api/blogs', require('./routes/blogRoutes'));

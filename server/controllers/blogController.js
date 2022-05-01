@@ -49,7 +49,10 @@ const updateBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
     try {
         const blog = await Blog.findOneAndDelete({ _id: req.params.id, user: req.user.id });
-        res.json([{ message: 'Blog deleted', type: 'success' }]);
+        res.json({
+            blogId: req.params.id,
+            toasts: [{ message: 'Blog deleted', type: 'success' }]
+        });
     } catch (error) {
         console.error(`ERROR: ${err.message}`.bgRed.underline.bold);
         res.status(500).send('Server Error');
