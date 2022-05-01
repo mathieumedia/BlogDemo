@@ -1,20 +1,24 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {
     Grid, TextField, Button, Typography,
     CssBaseline, Container, Box, Avatar,
     InputAdornment
 } from '@mui/material'
 import { useNavigate, Link } from 'react-router-dom'
-
-
+import {toast} from 'react-toastify'
+import Copyright
+ from '../components/Copyright'
 // #region --------------( ICONS )--------------
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 // #endregion
 
-
+import {useAuth} from '../middleware/contextHooks'
 export default function Register() {
+    const {registerUser, clearErrors, toasts, isAuthenticated} = useAuth();
+
+
     const navigate = useNavigate()
     const [user, setUser] = useState({
         firstName: 'Peter', lastName: 'Pan', 
@@ -26,19 +30,32 @@ export default function Register() {
         password: false, confirmPassword: false
     })
 
+    useEffect(() => {
+        if(isAuthenticated) navigate('/blogs')
+
+        if(toasts){
+            toasts.forEach(ele => {
+                toast(ele.message, {
+                    type: ele.type
+                })
+            });
+            clearErrors()
+        }
+    }, [toasts, isAuthenticated, clearErrors, navigate])
+
     const handleRegister = () => {
         const { firstName, lastName, email, password, confirmPassword } = user
         if(!firstName || !lastName || !email || !password || !confirmPassword) {
-            alert('Please fill all fields')
+            toast('Please fill all the fields', {type: 'error'})
             return
         }
 
         if(password !== confirmPassword) {
-            alert('Passwords do not match')
+            toast('Passwords do not match', {type: 'error'})
             return
         }
 
-        alert('Registration successful')
+        registerUser(user)
     }
     return (
         <Container maxWidth="xs">
@@ -46,8 +63,8 @@ export default function Register() {
 
             <Box
                 sx={{
-                  marginTop: 8, display: 'flex',
-                  flexDirection: 'column', alignItems: 'center'
+                    mt: 8, display: 'flex', mb: 6,
+                    flexDirection: 'column', alignItems: 'center'
                 }}
             >
                 <Avatar sx={{m: 1, backgroundColor: 'secondary.main'}}>
@@ -111,7 +128,7 @@ export default function Register() {
                 <Button 
                     onClick={handleRegister}
                     fullWidth sx={{
-                      mt: 3, mb: 2
+                        mt: 3, mb: 2
                     }}
                 >
                     Register
@@ -125,6 +142,7 @@ export default function Register() {
                     </Grid>
                 </Grid>
             </Box>
+            <Copyright sx={{mt: 4}} />
         </Container>
     )
 }
