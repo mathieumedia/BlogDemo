@@ -12,7 +12,6 @@ import Masonry from '@mui/lab/Masonry'
 import { useNavigate, Link } from 'react-router-dom'
 import BlogCard from '../components/BlogCard'
 
-
 import { useBlog } from '../middleware/contextHooks'
 import MainContainer from '../components/MainContainer'
 import { toast } from 'react-toastify';

@@ -19,9 +19,10 @@ export default (state, action) => {
                 ...state,
                 toasts: action.payload
             }
-        case ActionTypes.UPDATE_BLOG_SUCCESS:
+        case ActionTypes.UPDATE_BLOG:
             return {
                 ...state,
+                currentBlog: action.payload,
                 blogs: state.blogs.map(blog => blog._id === action.payload._id ? action.payload : blog)
             }
         case ActionTypes.BLOG_DELETE:
@@ -33,7 +34,7 @@ export default (state, action) => {
         case ActionTypes.GET_BLOG_BY_ID:
             return {
                 ...state,
-                currentBlog: action.payload
+                currentBlog: state.blogs ? state.blogs.find(blog => blog._id === action.payload) : null
             }
         case ActionTypes.CLEAR_ERRORS:
             return {

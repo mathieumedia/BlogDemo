@@ -50,77 +50,77 @@ export default function Home() {
     }
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
-          <CssBaseline />
-        
-          <Grid
-              item xs={false}
-              sm={4} md={7}
-              sx={{
-                backgroundImage: 'url(https://source.unsplash.com/random)',
-                backgroundRepeat: 'no-repeat',
-                backgroundColor: (t) =>
-                  t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-          />
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-              <Box
+            <CssBaseline />
+            
+            <Grid
+                item xs={false}
+                sm={4} md={7}
                 sx={{
-                    mt: 8, display: 'flex', mx: 4,
-                    flexDirection: 'column', alignItems: 'center'
+                    backgroundImage: 'url(https://source.unsplash.com/random)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: (t) =>
+                    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                 }}
-            >
-                <Avatar sx={{m: 1, backgroundColor: 'secondary.main'}}>
-                    <LockOutlinedIcon  />
-                </Avatar>
-
-                <Typography component="h1" variant="h5">
-                    Login
-                </Typography>
-
-                <Grid container spacing={2} sx={{mt: 3}}>
-  
-                    <Grid item xs={12}>
-                        <TextField
-                            placeholder='Enter Your Email' name='email' 
-                            label='Email' value={user.email} 
-                            onChange={(e) => setUser({...user, email: e.target.value})}
-                        />
-                    </Grid>
-                    <Grid item xs={12} >
-                        <TextField
-                            placeholder='Enter Password' name='password' 
-                            label='Password' value={user.password} 
-                            type={showPassword ? 'text' : 'password'}
-                            onChange={(e) => setUser({...user, password: e.target.value})}
-                            InputProps={{
-                                endAdornment: <InputAdornment position="end" onClick={() => setShowPassword(!showPassword)}>
-                                    {!showPassword ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
-                                </InputAdornment>,
-                            }}
-                        />
-                    </Grid>                      
-                </Grid>
-                <Button 
-                    onClick={handleRegister}
-                    fullWidth sx={{
-                        mt: 3, mb: 2
+            />
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Box
+                    sx={{
+                        mt: 8, display: 'flex', mx: 4,
+                        flexDirection: 'column', alignItems: 'center'
                     }}
                 >
-                    Login
-                </Button>
+                    <Avatar sx={{m: 1, backgroundColor: 'secondary.main'}}>
+                        <LockOutlinedIcon  />
+                    </Avatar>
 
-                <Grid container justifyContent="flex-end">
-                    <Grid item>
-                        <Link to="/register">
-                            Don't have an account? Register
-                        </Link>
+                    <Typography component="h1" variant="h5">
+                        Login
+                    </Typography>
+
+                    <Grid container spacing={2} sx={{mt: 3}}>
+    
+                        <Grid item xs={12}>
+                            <TextField
+                                placeholder='Enter Your Email' name='email' 
+                                label='Email' value={user.email} 
+                                onChange={(e) => setUser({...user, email: e.target.value})}
+                            />
+                        </Grid>
+                        <Grid item xs={12} >
+                            <TextField
+                                placeholder='Enter Password' name='password' 
+                                label='Password' value={user.password} 
+                                type={showPassword ? 'text' : 'password'}
+                                onChange={(e) => setUser({...user, password: e.target.value})}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end" onClick={() => setShowPassword(!showPassword)}>
+                                        {!showPassword ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
+                                    </InputAdornment>,
+                                }}
+                            />
+                        </Grid>                      
                     </Grid>
-                </Grid>
-              </Box>
-              <Copyright sx={{mt: 4}} />
-          </Grid>
+                    <Button 
+                        onClick={handleRegister}
+                        fullWidth sx={{
+                            mt: 3, mb: 2
+                        }}
+                    >
+                        Login
+                    </Button>
+
+                    <Grid container justifyContent="flex-end">
+                        <Grid item>
+                            <Link to="/register">
+                                Don't have an account? Register
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </Box>
+                <Copyright sx={{mt: 4}} />
+            </Grid>
         </Grid>
     );
 }

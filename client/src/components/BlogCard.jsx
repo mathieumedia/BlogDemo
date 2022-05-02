@@ -4,28 +4,23 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material';
 import {truncateString} from '../middleware/utils'
 
 import { useNavigate } from 'react-router-dom';
 
-const StyledBlogCard = styled(Card) (({theme}) => ({
-    backgroundColor: 'silver',
-    borderRadius: '10px',
-}))
 
 
 export default function BlogCard(props) {
     const navigate = useNavigate();
     return (
-        <StyledBlogCard >
+        <Card variant='shaded'>
             <CardContent>
-                <Typography variant='h6' align='left'>
+                <Typography variant='h6'>
                     {props.blog.title}
                 </Typography>
 
 
-                <Typography color='text.secondary' align='left'>
+                <Typography color='text.secondary'>
                     {truncateString(props.blog.content, 100)}
                 </Typography>
             </CardContent>
@@ -36,6 +31,6 @@ export default function BlogCard(props) {
                     Read More
                 </Button>
             </CardActions>
-        </StyledBlogCard>
+        </Card>
     );
 }
