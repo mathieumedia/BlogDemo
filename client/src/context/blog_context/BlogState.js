@@ -10,6 +10,7 @@ export default function BlogState(props){
         blogs: null,
         currentBlog: null,
         toasts: null,
+        blogCreated: false
     }
 
     const [state, dispatch] = useReducer(blogReducer, initialstate);
@@ -54,7 +55,21 @@ export default function BlogState(props){
         }
     }
 
-    const createBlog = async (blogData) => {}
+    const createBlog = async (blogData) => {
+        try {
+            const res = await axios.post('/api/blogs', blogData, config);
+            dispatch({
+                type: ActionTypes.NEW_BLOG_SUCCESS,
+                payload: res.data
+            })
+        } catch (err) {
+            console.log(err.response.data);
+            dispatch({
+                type: ActionTypes.BLOG_FAIL,
+                payload: err.response.data,
+            })
+        }
+    }
 
     const updateBlog = async (blogData) => {
         try {
@@ -88,12 +103,20 @@ export default function BlogState(props){
         }
     }
 
-    const clearErrors = async () => {}
+    const clearErrors = async () => {
+        dispatch({
+            type: ActionTypes.CLEAR_ERRORS,
+        })
+    }
 
     const clearBlogs = async () => {
         dispatch({
             type: ActionTypes.CLEAR_BLOGS
         })
+    }
+
+    const clearCurrentBlog = () =>{
+        dispatch({type: ActionTypes.CLEAR_CURRENT_BLOG})
     }
 
     // #endregion
@@ -103,6 +126,9 @@ export default function BlogState(props){
             blogs: state.blogs,
             currentBlog: state.currentBlog,
             toasts: state.toasts,
+            blogCreated: state.blogCreated,
+            
+            clearCurrentBlog,
             getBlogs,
             getBlogById,
             createBlog,

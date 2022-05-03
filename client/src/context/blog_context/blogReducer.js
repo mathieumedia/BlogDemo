@@ -5,8 +5,11 @@ export default (state, action) => {
     switch (action.type) {
         case ActionTypes.NEW_BLOG_SUCCESS:
             let blogs = state.blogs ? state.blogs : [];
+
             return{
                 ...state,
+                blogCreated: true,
+                currentBlog: action.payload,
                 blogs: [...blogs, action.payload]
             }
         case ActionTypes.GET_BLOGS_SUCCESS:
@@ -41,10 +44,17 @@ export default (state, action) => {
                 ...state,
                 toasts: null
             }
+        case ActionTypes.CLEAR_CURRENT_BLOG:
+            return {
+                ...state,
+                currentBlog: null
+            }
         case ActionTypes.CLEAR_BLOGS:
             return {
                 ...state,
                 blogs: null,
+                currentBlog: null,
+                blogCreated: false,
                 toasts: null
             }
         default:
