@@ -1,18 +1,19 @@
 import { createTheme } from "@mui/material";
-
 export default createTheme({
-    palette: {
-        primary: {
-            main: "#1fbfc1",
-        },
-        secondary: {
-            main: "#ffb300"
-        },
-        text: {
-            light: "#f5f5f5",
-            primary: "#1fbfc1"
-        }
-    },
+    // palette: {
+    //     primary: {
+    //         main: "#1fbfc1",
+    //         light:'#f5f5f5'
+    //     },
+    //     secondary: {
+    //         main: "#ffb300"
+    //     },
+    //     text: {
+    //         light: "#f5f5f5",
+    //         primary: "#1fbfc1"
+    //     }
+
+    // },
     components: {
         MuiTextField: {
             defaultProps: {
@@ -26,6 +27,14 @@ export default createTheme({
                 }
             }
         },
+        // MuiListItemText: {
+        //     styleOverrides: {
+        //         root: {
+        //             color: '#1fbfc1',
+        //         }
+        //     }
+        // },
+
         MuiButton: {
             defaultProps: {
                 size: "small",
@@ -61,33 +70,17 @@ export default createTheme({
                 }
             }
         },
-        MuiAppBar: {
+        // MuiAppBar: {
+        //     styleOverrides: {
+        //         root: {
+        //             padding: 0
+        //         }
+        //     }
+        // },
+        MuiList:{
             styleOverrides: {
-                root: {
-                    padding: 0
-                }
-            }
-        },
-        MuiList: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#E0E0D9'
-                }
-            }
-        },
-        MuiListItemText: {
-            styleOverrides: {
-                root: {
-                    color: '#1fbfc1'
-                }
-            }
-        },
-        MuiSvgIcon: {
-            styleOverrides: {
-                root: {
-                    color: '#1fbfc1',
-                    backgroundColor: 'white',
-                    borderRadius: '50%',
+                root:{
+                    backgroundColor: "#E0E0D9"
                 }
             }
         }

@@ -8,7 +8,10 @@ export default function MainContainer(props) {
     return (
         <SimpleBar style={{maxHeight:'100vh'}} forceVisible='y' autoHide={false}>
             <Header  />
-            {props.children}
+            <div style={{paddingBottom: '5rem'}}>
+                {props.children}
+            </div>
+            
             <Copyright  />
         </SimpleBar>
     )

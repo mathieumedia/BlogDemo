@@ -3,9 +3,9 @@ import { Link, Typography } from '@mui/material'
 
 export default function Copyright() {
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
+        <Typography variant="body2" color="primary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="/">Mathieu Media</Link>{' '}
+            <Link color="inherit" href="/" >Mathieu Media</Link>{' '}
             {new Date().getFullYear()}{'.'}
         </Typography>
     )

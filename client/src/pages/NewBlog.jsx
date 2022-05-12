@@ -22,7 +22,7 @@ export default function NewBlog() {
     const [newBlog, setNewBlog] = useState({title: '', content: ''});
     const {
         toasts, clearErrors, createBlog, 
-        blogs, getBlogs, clearCurrentBlog,
+        blogs, getBlogs, 
         blogCreated, currentBlog
     } = useBlog();
     const [onGenerate, setOnGenerate] = useState(false);
@@ -33,12 +33,12 @@ export default function NewBlog() {
         }
 
         if(toasts){
-              toasts.forEach(ele => {
-                  toast(ele.message, {type: ele.type})
-              })
-              clearErrors()
-          }
-          
+            toasts.forEach(ele => {
+                toast(ele.message, {type: ele.type})
+            })
+            clearErrors()
+        }
+        
         if(blogCreated){
             const id = currentBlog._id
             navigate(`/blogs/${id}`)

@@ -8,15 +8,13 @@ import {truncateString} from '../middleware/utils'
 
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function BlogCard(props) {
     const navigate = useNavigate();
     return (
         <Card variant='shaded'>
             <CardContent>
                 <Typography variant='h6'>
-                    {truncateString(props.blog.title, 40)}
+                    {truncateString(props.blog.title, 50)}
                 </Typography>
 
 
@@ -25,7 +23,7 @@ export default function BlogCard(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" 
+                <Button 
                     onClick={() => navigate(`/blogs/${props.blog._id}`)}
                 >
                     Read More

@@ -47,7 +47,8 @@ export default (state, action) => {
         case ActionTypes.CLEAR_CURRENT_BLOG:
             return {
                 ...state,
-                currentBlog: null
+                currentBlog: null,
+                blogCreated: false
             }
         case ActionTypes.CLEAR_BLOGS:
             return {

@@ -30,7 +30,7 @@ export default function BlogDetail() {
 
     useEffect(() => {
         if(!blogs) {
-              getBlogs();
+            getBlogs();
         } else if(!currentBlog || currentBlog?._id !== id) {
             getBlogById(id);
         }
@@ -75,7 +75,7 @@ export default function BlogDetail() {
         return (
             <Stack spacing={2}>
                 <Stack spacing={2} direction='row'>
-                    <Typography variant='h5' sx={{flexGrow: 1}}>{blog?.title}</Typography>
+                    <TextField label='Title' value={blog?.content} disabled sx={{flexGrow: 1}}/>
                     <IconButton onClick={handleEdit}>
                         <EditIcon />
                     </IconButton>
@@ -83,7 +83,7 @@ export default function BlogDetail() {
                         <DeleteForeverIcon />
                     </IconButton>
                 </Stack>
-                <Typography variant='p'>{blog?.content}</Typography>
+                <TextField label='Content' value={blog?.content} disabled multiline/>
             </Stack>
         )
     }
@@ -91,7 +91,7 @@ export default function BlogDetail() {
     return (
         <MainContainer>
             <Container maxWidth='md' sx={{mt: 3, mb: 5}}>
-                <Paper sx={{backgroundColor: !edit ? 'silver': ''}}>
+                <Paper >
                     {!edit 
                         ?   displayDisabled()
                         :   <Stack spacing={2}>
@@ -107,7 +107,7 @@ export default function BlogDetail() {
 
                                 <Stack spacing={2} direction='row'>
                                     <Button variant='contained' onClick={handleUpdate}>Update</Button>
-                                    <Button variant='outlined' onClick={handleCancel}>Cancel</Button>
+                                    <Button variant='outlined' sx={{color: 'primary.main'}} onClick={handleCancel}>Cancel</Button>
                                 </Stack>
                             </Stack>
                     }

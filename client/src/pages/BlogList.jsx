@@ -1,24 +1,21 @@
 import React, {useState, useEffect} from 'react'
-
+import { useNavigate, Link } from 'react-router-dom'
+import { useBlog } from '../middleware/contextHooks'
+import { toast } from 'react-toastify';
+import { truncateString } from '../middleware/utils';
 import {
     Grid,
-    Button, Container, Stack, Tooltip,
+    Button, Container, Tooltip,
     Box, List, ListItem, ListItemText,
-    
 } from '@mui/material'
 
 import Masonry from '@mui/lab/Masonry'
-
-import { useNavigate, Link } from 'react-router-dom'
-import BlogCard from '../components/BlogCard'
-
-import { useBlog } from '../middleware/contextHooks'
 import MainContainer from '../components/MainContainer'
-import { toast } from 'react-toastify';
+import BlogCard from '../components/BlogCard'
 
 
 export default function BlogList() {
-    const {getBlogs, toasts, clearErrors, blogs} = useBlog();
+    const {getBlogs, toasts, clearErrors, blogs, clearCurrentBlog} = useBlog();
     const navigate = useNavigate();
     const [myBlogs, setMyBlogs] = useState([]);
 
@@ -39,22 +36,26 @@ export default function BlogList() {
         }
 
     },[toasts, clearErrors, blogs, getBlogs])
+
+    const onCreateNewBlog = () => {
+        clearCurrentBlog();
+        navigate('/newblog')
+    }
     return (
         <MainContainer>
             <Container maxWidth="lg" sx={{py: 1, my: 1}}>
                 <Grid container spacing={2}>
                     <Grid item xs={false} md={3}>
-                        <Stack spacing={2} sx={{display: 'flex'}} direction='row'>
-                            <Box sx={{flexGrow: 1}} />
-                            <Button fullWidth={false} onClick={() => navigate('/newblog')}>Create Blog</Button>
-                        </Stack>
-
-                        <List sx={{backgroundColor: 'silver', borderRadius: 5, mt: 3}}>
+                        <List sx={{borderRadius: 5, mt: 3}}>
                             {myBlogs?.map(blog => (
-                                <Link to={`/blogs/${blog._id}`} key={blog._id}>
+                                <Link
+                                    style={{textDecoration: 'none'}}
+                                    to={`/blogs/${blog._id}`} key={blog._id}>
                                     <ListItem>
                                         <Tooltip title={blog.title} placement='right'>
-                                            <ListItemText primary={blog.title} />
+                                            <ListItemText 
+                                                primary={truncateString(blog.title, 30)} 
+                                            />
                                         </Tooltip>
                                     </ListItem>
                                 </Link>
@@ -62,7 +63,14 @@ export default function BlogList() {
                         </List>
                     </Grid>
 
+                    {/* <Grid item xs={12} md={9}>
+                        
+                    </Grid> */}
+
                     <Grid item xs={12} md={9}>
+                        <Box sx={{display: 'flex', justifyContent: 'flex-end', mb: 2}}>
+                            <Button onClick={onCreateNewBlog}>Create Blog</Button>
+                        </Box>
                         <Masonry columns={2}>
                             {myBlogs?.map(blog => (
                                 <BlogCard blog={blog} key={blog._id} />

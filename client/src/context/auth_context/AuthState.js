@@ -84,6 +84,22 @@ export default function AuthState(props) {
             })
         }
     }
+
+    const updateUser = async (userData) => {
+        try {
+            const res = await axios.put(`/api/users/${userData._id}`, userData, config);
+            dispatch({
+                type: ActionTypes.SET_CURRENT_USER,
+                payload: res.data
+            })
+        } catch (err) {
+            console.log(err.response.data);
+            dispatch({
+                type: ActionTypes.AUTH_ERROR,
+                payload: err.response.data,
+            })
+        }
+    }
     // #endregion
 
     return (
@@ -96,7 +112,8 @@ export default function AuthState(props) {
             loginUser,
             logoutUser,
             clearErrors,
-            getProfile
+            getProfile,
+            updateUser
         }}>
             {props.children}
         </AuthContext.Provider>
