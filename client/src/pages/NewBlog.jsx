@@ -74,11 +74,11 @@ export default function NewBlog() {
     const handleGenerate = () => {
         const lorem = new LoremIpsum({
             sentencesPerParagraph:{
-                max: loremOptions.maxSentencePerParagraph,
+                max: loremOptions.sentencePerParagraph,
                 min: loremOptions.minSentencePerParagraph
             },
             wordsPerSentence: {
-                max: loremOptions.maxWordPerSentence,
+                max: loremOptions.wordPerSentence,
                 min: loremOptions.minWordPerSentence
             }
         })
